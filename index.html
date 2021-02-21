@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>OneBanc</title>
+</head>
+<body>
+    <header class="hdr">
+        <div id="logo">
+            <img src="images/logo.png" alt="logo">
+        </div>
+
+        <div id="writer">
+            RE: <br>
+            THINK 
+            <br>
+            
+                <div>
+                        <span id="features"></span>
+                        <span id="cursor">|</span>
+                </div>
+
+        </div>
+        <div id=" description" class="spacing">
+        We are a Neo Bank, cool and simply awesome!
+        </div>
+       
+       
+        <div id="email" class="spacing">
+            <form action="">
+                <input type="email" placeholder="enter your email" id="email">
+                <input type="button" value="submit" class="btn">
+            </form>
+        </div>
+    </header>
+
+
+
+        
+             <div id="onebanc_man_container">
+            
+                
+                    
+                       
+
+
+                        <div style=" margin-left:15%; margin-right:15%; width:70%;">
+                            <img src="images/onebanc_man_mob1.png" style=" width:90%; margin-left:5%; margin-right:5%; margin-top:5%;" alt="regular_bank">
+                            
+                            
+                            
+                            </div>
+                   
+
+
+                       
+
+                        <div class="man_text">
+                            #OneBanc
+                        </div>
+                        
+                    
+
+                     
+
+                
+            
+        </div>
+
+        <footer class="foot">
+            <div id="qr_code_container">
+                <img src="images/qr_code.png" alt="qr_code_img">
+            </div>
+
+            <div id="TnC_policy">
+                <a href="">Terms and Condition </a> | 
+                <a href="">Privacy Policy</a> 
+            </div>
+
+            <div id="rights">
+                2021 © OneBanc Technologies Pvt. Ltd.
+            </div>
+        </footer>
+
+
+        <script>
+            var cursorVisible = true;
+        var currentFeatureIndex = 0;
+        var i = 0, crid = -1, ldt = 0;
+        var featureTxtArr = ['CARDS', 'PAYMENTS', 'LOAN', 'SUPPORT', 'REWARDS', 'SAVINGS', 'INVESTMENTS', 'FOREX', 'ANALYTICS'];
+        var isIe = false, isSaf = false;
+
+        window.onload=function(){
+            this.setTimeout(this.writer,700);
+            
+            animateFeature(featureTxtArr[0].toLowerCase());
+
+            setInterval(function () {
+                    var cusorDom = document.getElementById('cursor');
+                    if (cursorVisible) {
+                        cusorDom.style.opacity = 0;
+                        cursorVisible = false;
+                    } else {
+                        cusorDom.style.opacity = 1;
+                        cursorVisible = true;
+                    }
+                }, 350);
+
+                bindWriter();
+        }
+
+        function bindWriter() {
+            var txt = featureTxtArr[currentFeatureIndex];
+            if (i < txt.length) {
+                document.getElementById("features").innerHTML += txt.charAt(i);
+                i++;
+                setTimeout(bindWriter, 110);
+            }
+            else
+                this.setTimeout(this.bindWriterDel, 700);
+        }
+
+        function bindWriterDel() {
+            var txt = featureTxtArr[currentFeatureIndex];
+            if (i > 0) {
+                i--;
+                document.getElementById("features").innerHTML = txt.substring(0, i);
+                setTimeout(bindWriterDel, 110);
+            } else {
+                currentFeatureIndex++;
+                if (currentFeatureIndex >= featureTxtArr.length)
+                    currentFeatureIndex = 0;
+                animateFeature(featureTxtArr[currentFeatureIndex].toLowerCase());
+                this.setTimeout(this.bindWriter, 700);
+            }
+        }
+
+        function animateFeature(featureClass) {
+            var elemArr = document.getElementsByClassName("selected");
+            var elemArrLen = elemArr.length;
+            for (var i = 0; i < elemArrLen; i++) {
+                removeClass(elemArr[0], "selected");
+            }
+            elemArr = document.getElementsByClassName(featureClass);
+            for (var i = 0; i < elemArr.length; i++) {
+                elemArr[i].className += " selected";
+            }
+        }
+
+        
+        </script>
+
+</body>
+</html>
